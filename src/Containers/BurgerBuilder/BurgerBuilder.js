@@ -26,7 +26,7 @@ class BurgerBuilder extends Component {
       ...this.state.ingredients
     }
     updatedIngredients[type] = this.state.ingredients[type] + 1
-    const newPrice = this.state.price + INGREDIENT_PRICES[type]
+    const newPrice = this.state.totalPrice + INGREDIENT_PRICES[type]
     this.setState({ingredients: updatedIngredients, totalPrice: newPrice})
   }
 
@@ -38,12 +38,12 @@ class BurgerBuilder extends Component {
       ...this.state.ingredients
     }
     updatedIngredients[type] = this.state.ingredients[type] - 1
-    const newPrice = this.state.price - INGREDIENT_PRICES[type]
+    const newPrice = this.state.totalPrice - INGREDIENT_PRICES[type]
     this.setState({ingredients: updatedIngredients, totalPrice: newPrice})
   }
 
   render () {
-    const { ingredients } = this.state
+    const { ingredients, totalPrice } = this.state
     const disabledInfo = {
       ...ingredients
     }
@@ -58,6 +58,7 @@ class BurgerBuilder extends Component {
           ingredientAdded={this.addIngredientsHandler}
           ingredientRemoved={this.removeIngredientsHandler}
           disabled={disabledInfo}
+          price={totalPrice}
         />
       </>
     )
