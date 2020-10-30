@@ -2,12 +2,12 @@
     background-color: transparent;
     border: none;
     color: white;
-    outline: none;
     cursor: pointer;
     font: inherit;
-    padding: 10px;
-    margin: 10px;
     font-weight: bold;
+    margin: 10px;
+    outline: none;
+    padding: 10px;
 }
 
 .Button:first-of-type {
