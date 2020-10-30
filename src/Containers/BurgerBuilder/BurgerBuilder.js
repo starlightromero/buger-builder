@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls'
 
@@ -16,9 +16,19 @@ class BurgerBuilder extends Component {
       salad: 0,
       bacon: 0,
       cheese: 0,
-      meat: 0,
+      meat: 0
     },
-    totalPrice: 4
+    totalPrice: 4,
+    purchasable: false
+  }
+
+  updatePurchaseState = ingredients => {
+    const sum = Object.keys(ingredients).map(key => {
+      return ingredients[key]
+    }).reduce((sum, el) => {
+      return sum + el
+    }, 0)
+    this.setState({purchasable: sum > 0})
   }
 
   addIngredientsHandler = type => {
@@ -28,6 +38,7 @@ class BurgerBuilder extends Component {
     updatedIngredients[type] = this.state.ingredients[type] + 1
     const newPrice = this.state.totalPrice + INGREDIENT_PRICES[type]
     this.setState({ingredients: updatedIngredients, totalPrice: newPrice})
+    this.updatePurchaseState(updatedIngredients)
   }
 
   removeIngredientsHandler = type => {
@@ -40,28 +51,29 @@ class BurgerBuilder extends Component {
     updatedIngredients[type] = this.state.ingredients[type] - 1
     const newPrice = this.state.totalPrice - INGREDIENT_PRICES[type]
     this.setState({ingredients: updatedIngredients, totalPrice: newPrice})
+    this.updatePurchaseState(updatedIngredients)
   }
 
-  render () {
-    const { ingredients, totalPrice } = this.state
+  render() {
+    const {ingredients, totalPrice, purchasable} = this.state
     const disabledInfo = {
       ...ingredients
     }
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0
     }
-    
+
     return (
       <>
-        <Burger ingredients={ingredients} />
-        <BuildControls
+        <Burger ingredients = {ingredients} />
+        <BuildControls 
           ingredientAdded={this.addIngredientsHandler}
           ingredientRemoved={this.removeIngredientsHandler}
           disabled={disabledInfo}
           price={totalPrice}
+          purchasable={purchasable}
         />
-      </>
-    )
+  </>)
   }
 }
 
