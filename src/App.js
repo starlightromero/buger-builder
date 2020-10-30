@@ -1,5 +1,5 @@
 import './App.css'
-import Layout from './Components/Layout/Layout'
+import Layout from './Containers/Layout/Layout'
 import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder'
 
 function App () {
