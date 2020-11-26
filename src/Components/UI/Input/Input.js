@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classes from './Input.module.css'
 
 const Input = props => {
@@ -38,7 +39,7 @@ const Input = props => {
             <option key={option.value} value={option.value}>
               {option.displayValue}
             </option>
-        ))}
+          ))}
         </select>
       )
       break
@@ -68,6 +69,18 @@ const Input = props => {
       {validationError}
     </div>
   )
+}
+
+Input.propTypes = {
+  invalid: PropTypes.bool,
+  shouldValidate: PropTypes.bool,
+  touched: PropTypes.bool,
+  label: PropTypes.string,
+  changed: PropTypes.func,
+  valueType: PropTypes.string,
+  value: PropTypes.string,
+  elementConfig: PropTypes.object,
+  elementType: PropTypes.string
 }
 
 export default Input
