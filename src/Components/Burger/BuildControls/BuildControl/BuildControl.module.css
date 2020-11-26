@@ -1,11 +1,15 @@
 .BuildControl {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
   justify-content: space-between;
   margin: 5px 0;
 }
 
-.BuildControl button {
+.BuildControl .Buttons {
+  display: flex;
+}
+
+.BuildControl .Buttons button {
   border: 1px solid #AA6871;
   cursor: pointer;
   display: block;
