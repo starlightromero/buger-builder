@@ -73,7 +73,7 @@ const Input = props => {
 
 Input.propTypes = {
   invalid: PropTypes.bool,
-  shouldValidate: PropTypes.bool,
+  shouldValidate: PropTypes.func,
   touched: PropTypes.bool,
   label: PropTypes.string,
   changed: PropTypes.func,
