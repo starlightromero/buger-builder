@@ -140,3 +140,11 @@
   margin: 0 auto;
   width: 80%;
 }
+
+.Mayo {
+  background: linear-gradient(#f9f9e1, #ffffee);
+  border-top: 1px solid #dfdfb3;
+  height: 2%;
+  margin: 0 auto;
+  width: 80%;
+}
