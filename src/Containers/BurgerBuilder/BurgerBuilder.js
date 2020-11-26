@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls'
 import Modal from '../../Components/UI/Modal/Modal'
@@ -10,14 +10,13 @@ import { connect } from 'react-redux'
 import * as actions from '../../store/actions'
 
 class BurgerBuilder extends Component {
-
   state = {
     purchasing: false,
     loading: false,
     error: null
   }
 
-  componentDidMount() {
+  componentDidMount () {
     // axios.get('ingredients.json').then(response => {
     //   this.setState({ingredients: response.data})
     // }).catch(error => {
