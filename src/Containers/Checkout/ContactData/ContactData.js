@@ -4,7 +4,7 @@ import classes from './ContactData.module.css'
 import Loader from '../../../Components/UI/Loader/Loader'
 import Button from '../../../Components/UI/Button/Button'
 import Input from '../../../Components/UI/Input/Input'
-import withOrderHandler from '../../../HOC/withOrderHandler/withOrderHandler'
+import withErrorHandler from '../../../HOC/withErrorHandler/withErrorHandler'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions'
 
@@ -94,7 +94,6 @@ class ContactData extends Component {
       },
     },
     formIsValid: false,
-    loading: false
   }
 
   orderHandler = event => {
@@ -181,7 +180,7 @@ class ContactData extends Component {
         <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
       </form>
     )
-    if (this.state.loading === true) {
+    if (this.props.loading === true) {
       form = <Loader />
     }
     return (
@@ -197,11 +196,14 @@ const mapStateToProps = state => {
   return {
     ingredients: state.ingredients,
     price: state.totalPrice,
+    loading: state.loading
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  onOrderBurger: orderData => dispatch(actions.purchaseBurgerStart(orderData))
+  return {
+    onOrderBurger: orderData => dispatch(actions.purchaseBurger(orderData))
+  }
 }
 
-export default connect(mapStateToProps)(withOrderHandler(ContactData, axios))
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios))
