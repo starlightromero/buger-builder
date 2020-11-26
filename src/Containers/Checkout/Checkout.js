@@ -10,7 +10,6 @@ class Checkout extends Component {
   }
 
   checkoutContinuedHandler = event => {
-    event.preventDefault()
     this.props.history.replace('/checkout/contact-data')
   }
 
@@ -18,7 +17,7 @@ class Checkout extends Component {
     const { ingredients } = this.props
     let summary = <Redirect to='/' />
     if (ingredients) {
-      let summary = (
+      summary = (
         <div>
           <CheckoutSummary
             checkoutCanceled={this.checkoutCanceledHandler}
