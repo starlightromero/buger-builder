@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classes from './Order.module.css'
 
 const Order = props => {
   const ingredients = []
 
-  for (let ingredientName in props.ingredients) {
+  for (const ingredientName in props.ingredients) {
     ingredients.push({
       name: ingredientName,
       amount: props.ingredients[ingredientName]
@@ -33,6 +34,11 @@ const Order = props => {
       <p>Price: <strong>USD {props.price.toFixed(2)}</strong></p>
     </div>
   )
+}
+
+Order.propTypes = {
+  ingredients: PropTypes.array,
+  price: PropTypes.number
 }
 
 export default Order
