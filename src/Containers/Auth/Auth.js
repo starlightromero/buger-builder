@@ -20,7 +20,7 @@ class Auth extends Component {
         valid: false,
         touched: false
       },
-      email: {
+      password: {
         elementType: 'input',
         elementConfig: {
           type: 'password',
@@ -34,8 +34,8 @@ class Auth extends Component {
         valid: false,
         touched: false
       },
-      formIsValid: false,
-    }
+    },
+    formIsValid: false,
   }
 
   checkValidity = (value, rules) => {
@@ -107,6 +107,7 @@ class Auth extends Component {
         ))}
         <Button btnType="Success" disabled={!this.state.formIsValid}>SIGNIN</Button>
       </form>
+    )
     return (
       <div className={classes.Auth}>
         {form}
