@@ -6,15 +6,17 @@ import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder'
 import Checkout from './Containers/Checkout/Checkout'
 import Orders from './Containers/Orders/Orders'
 import Auth from './Containers/Auth/Auth'
+import Logout from './Containers/Auth/Logout/Logout'
 
 function App () {
   return (
     <Router className='App'>
       <Layout>
-        <Route path='/checkout' component={Checkout} />
-        <Route path='/orders' component={Orders} />
-        <Route path='/auth' component={Auth} />
-        <Route path='/' exact component={BurgerBuilder} />
+        <Route exact path='/checkout' component={Checkout} />
+        <Route exact path='/orders' component={Orders} />
+        <Route exact path='/auth' component={Auth} />
+        <Route exact path='/logout' component={Logout} />
+        <Route exact path='/' component={BurgerBuilder} />
       </Layout>
     </Router>
   )
