@@ -113,6 +113,14 @@ class Auth extends Component {
         config: this.state.controls[key],
       })
     }
+
+    let authButtonText = 'SIGN UP'
+    let changeAuthButtonText = 'Already have an account? SIGN IN'
+
+    if (!this.state.isSignUp) {
+      changeAuthButtonText= 'Need an account? SIGN UP'
+      authButtonText = 'SIGN IN'
+    }
     
     let form = (
       <form onSubmit={this.submitHandler}>
@@ -127,7 +135,9 @@ class Auth extends Component {
             touched={formElement.config.touched}
             changed={event => this.inputChangedHandler(event, formElement.id)} />
         ))}
-        <Button btnType='Success' disabled={!this.state.formIsValid}>SIGN UP</Button>
+        <Button btnType='Success' disabled={!this.state.formIsValid}>
+          {authButtonText}
+        </Button>
       </form>
     )
 
@@ -143,12 +153,6 @@ class Auth extends Component {
       )
     }
 
-    let buttonText = 'Already have an account? SIGN IN'
-
-    if (!this.state.isSignUp) {
-      buttonText = 'Need an account? SIGN UP'
-    }
-
     let authRedirect = null
     if (this.props.isAuthenticated) {
       authRedirect = <Redirect to='/' />
@@ -160,7 +164,7 @@ class Auth extends Component {
         {errorMesage}
         {form}
         <Button btnType='Danger' clicked={this.switchAuthModeHandler}>
-          {buttonText}
+          {changeAuthButtonText}
         </Button>
       </div>
     )
