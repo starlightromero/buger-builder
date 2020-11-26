@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import classes from './Auth.module.css'
 import Input from '../../Components/UI/Input/Input'
 import Button from '../../Components/UI/Button/Button'
+import Loader from '../../Components/UI/Loader/Loader'
 import * as actions from '../../store/actions'
 
 class Auth extends Component {
@@ -111,7 +112,7 @@ class Auth extends Component {
         config: this.state.controls[key],
       })
     }
-
+    
     let form = (
       <form onSubmit={this.submitHandler}>
         {formElementsArray.map(formElement => (
@@ -129,6 +130,18 @@ class Auth extends Component {
       </form>
     )
 
+    if (this.props.loading) {
+      <Loader />
+    }
+
+    let errorMesage = null
+
+    if (this.props.error) {
+      errorMessage = (
+        <p>{this.props.error.message}</p>
+      )
+    }
+
     let buttonText = 'Already have an account? SIGN IN'
 
     if (!this.state.isSignUp) {
@@ -136,6 +149,7 @@ class Auth extends Component {
     }
     return (
       <div className={classes.Auth}>
+        {errorMesage}
         {form}
         <Button btnType='Danger' clicked={this.switchAuthModeHandler}>
           {buttonText}
@@ -146,7 +160,10 @@ class Auth extends Component {
 }
 
 const mapStateToProps = state => {
-  
+  return {
+    loading: state.auth.loading,
+    error: state.auth.error
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -155,4 +172,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Auth)
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)
