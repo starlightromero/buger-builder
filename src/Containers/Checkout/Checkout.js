@@ -5,7 +5,6 @@ import ContactData from './ContactData/ContactData'
 import { connect } from 'react-redux'
 
 class Checkout extends Component {
-
   checkoutCanceledHandler = () => {
     this.props.history.goBack()
   }
@@ -14,7 +13,7 @@ class Checkout extends Component {
     event.preventDefault()
     this.props.history.replace('/checkout/contact-data')
   }
-  
+
   render () {
     const { ingredients } = this.props
     return (
