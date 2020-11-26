@@ -3,25 +3,15 @@ import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls'
 import Modal from '../../Components/UI/Modal/Modal'
 import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary'
-import axios from '../../axios-orders'
 import Loader from '../../Components/UI/Loader/Loader'
+import axios from '../../axios-orders'
 import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
 
 class BurgerBuilder extends Component {
   state = {
-    purchasing: false,
-    loading: false,
-    error: null
-  }
-
-  componentDidMount () {
-    // axios.get('ingredients.json').then(response => {
-    //   this.setState({ingredients: response.data})
-    // }).catch(error => {
-    //   this.setState({error: true})
-    // })
+    purchasing: false
   }
 
   updatePurchaseState = ingredients => {
@@ -78,10 +68,6 @@ class BurgerBuilder extends Component {
           price={totalPrice}
         />
       )
-    }
-
-    if (this.state.loading) {
-      orderSummary = <Loader />
     }
 
     return (
