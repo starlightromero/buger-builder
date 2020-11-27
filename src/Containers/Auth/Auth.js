@@ -126,7 +126,7 @@ class Auth extends Component {
       <Loader />
     }
 
-    let errorMesage = null
+    let errorMessage = null
 
     if (this.props.error) {
       errorMessage = (
@@ -142,7 +142,7 @@ class Auth extends Component {
     return (
       <div className={classes.Auth}>
         {authRedirect}
-        {errorMesage}
+        {errorMessage}
         {form}
         <Button btnType='Danger' clicked={this.switchAuthModeHandler}>
           {changeAuthButtonText}
