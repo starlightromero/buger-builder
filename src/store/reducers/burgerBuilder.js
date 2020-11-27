@@ -59,7 +59,7 @@ const reducer = (state = initialState, action) => {
         error: false,
         building: false
       }
-    case actionTypes.FETCH_INGREDIENTS_FAILED:
+    case actionTypes.FETCH_INGREDIENTS_FAIL:
       return {
         ...state,
         error: true
