@@ -5,13 +5,14 @@ import NavigationItems from './NavigationItems'
 import NavigationItem from './NavigationItem/NavigationItem'
 
 configure({ adapter: new Adapter() })
-let wrapper
-
-beforeEach(() => {
-  wrapper = shallow(<NavigationItems />)
-})
 
 describe('<NavigationItems />', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = shallow(<NavigationItems />)
+  })
+
   it('should render two <NavigationItem /> elements if not authenticated', () => {
     expect(wrapper.find(NavigationItem)).toHaveLength(2)
   })
