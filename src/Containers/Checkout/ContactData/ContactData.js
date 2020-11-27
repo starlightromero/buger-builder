@@ -102,11 +102,12 @@ class ContactData extends Component {
     for (let formElementIdentifier in this.state.orderForm) {
       orderData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value
     }
-    const { ingredients, price, onOrderBurger, token } = this.props
+    const { ingredients, price, onOrderBurger, token, userId } = this.props
     const order = {
       ingredients,
       price,
       orderData,
+      userId
     }
     onOrderBurger(order, token)
   }
@@ -197,7 +198,8 @@ const mapStateToProps = state => {
     ingredients: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
     loading: state.order.loading,
-    token: state.auth.token
+    token: state.auth.token,
+    userId: state.auth.userId
   }
 }
 
