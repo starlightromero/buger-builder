@@ -21,9 +21,9 @@ export const setIngredients = ingredients => {
   }
 }
 
-export const fetchIngredientsFailed = () => {
+export const fetchIngredientsFail = () => {
   return {
-    type: actionTypes.FETCH_INGREDIENTS_FAILED
+    type: actionTypes.FETCH_INGREDIENTS_FAIL
   }
 }
 
