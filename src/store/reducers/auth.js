@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) => {
         error: action.error,
         loading: false
       }
-    case actionTypes.AUTH_LOGOUT:
+    case actionTypes.AUTH_SIGNOUT:
       return {
         ...state,
         token: null,

@@ -20,10 +20,10 @@ export {
 
 export {
   auth,
-  logout,
+  signout,
   setAuthRedirectPath,
   authCheckState,
-  logoutSuccess,
+  signoutSuccess,
   authStart,
   authSuccess,
   authFail,

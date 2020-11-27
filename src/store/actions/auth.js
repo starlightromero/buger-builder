@@ -22,15 +22,15 @@ export const authFail = error => {
   }
 }
 
-export const logout = () => {
+export const signout = () => {
   return {
-    type: actionTypes.AUTH_INIT_LOGOUT
+    type: actionTypes.AUTH_INIT_SIGNOUT
   }
 }
 
-export const logoutSuccess = () => {
+export const signoutSuccess = () => {
   return {
-    type: actionTypes.AUTH_LOGOUT
+    type: actionTypes.AUTH_SIGNOUT
   }
 }
 

@@ -4,13 +4,13 @@ import NavigationItem from './NavigationItem/NavigationItem'
 
 const navigationItems = props => {
   let authNavItems = (
-    <NavigationItem link='/auth'>Authenticate</NavigationItem>
+    <NavigationItem link='/auth'>Sign In</NavigationItem>
   )
   if (props.isAuth) {
     authNavItems = (
       <>
         <NavigationItem link='/orders'>Orders</NavigationItem>
-        <NavigationItem link='/logout'>Logout</NavigationItem>
+        <NavigationItem link='/signout'>Sign Out</NavigationItem>
       </>
     )
   }

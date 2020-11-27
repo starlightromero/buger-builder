@@ -3,16 +3,16 @@ import { delay } from 'redux-saga/effects'
 import { put } from 'redux-saga/effects'
 import * as actions from '../actions'
 
-export function* logoutSaga (action) {
+export function* signoutSaga (action) {
   yield localStorage.removeItem('token')
   yield localStorage.removeItem('expirationTime')
   yield localStorage.removeItem('userId')
-  yield put(actions.logoutSuccess())
+  yield put(actions.signoutSuccess())
 }
 
 export function* checkAuthTimeoutSaga (action) {
   yield delay(action.expirationTime * 1000)
-  yield put(actions.logout())
+  yield put(actions.signout())
 }
 
 export function* authUserSaga (action) {
@@ -42,7 +42,7 @@ export function* authUserSaga (action) {
 export function* authCheckStateSaga (action) {
   const token = yield localStorage.getItem('token')
   if (!token) {
-    yield put(actions.logout())
+    yield put(actions.signout())
   } else {
     const expirationTime = yield new Date(localStorage.getItem('expirationTime'))
     if (expirationTime > new Date()) {
@@ -54,7 +54,7 @@ export function* authCheckStateSaga (action) {
         )
       )
     } else {
-      yield put(actions.logout())
+      yield put(actions.signout())
     }
   }
 }

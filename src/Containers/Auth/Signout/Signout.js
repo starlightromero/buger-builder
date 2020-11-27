@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions'
 
-class Logout extends Component {
+class Signout extends Component {
   componentDidMount () {
-    this.props.onLogout()
+    this.props.onSignout()
   }
 
   render () {
@@ -20,8 +20,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogout: () => dispatch(actions.logout())
+    onSignout: () => dispatch(actions.signout())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Logout)
+export default connect(mapStateToProps, mapDispatchToProps)(Signout)
