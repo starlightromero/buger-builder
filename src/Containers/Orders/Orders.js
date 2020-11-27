@@ -16,17 +16,22 @@ class Orders extends Component {
     let displayOrders = <Loader />
     if (!loading) {
       displayOrders = (
-        <div>
+        <>
           {orders.map(order => (
             <Order
               key={order.id}
               price={+order.price}
               ingredients={order.ingredients} />
           ))}
-        </div>
+        </>
       )
     }
-    return displayOrders
+    return (
+      <div>
+        <h1>Orders</h1>
+        {displayOrders}
+      </div>
+    )
   }
 }
 
