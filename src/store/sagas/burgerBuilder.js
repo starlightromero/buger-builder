@@ -7,6 +7,6 @@ export function* initIngredientsSaga (action) {
     const response = yield axios.get('ingredients.json')
     yield put(actions.setIngredients(response.data))
   } catch (error) {
-    yield put(actions.fetchIngredientsFailed())
+    yield put(actions.fetchIngredientsFail())
   }
 }
