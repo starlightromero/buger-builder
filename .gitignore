@@ -23,5 +23,15 @@ yarn-debug.log*
 yarn-error.log*
 
 .eslintrc.js
+
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
+
 .babelrc
 babel.config.json
