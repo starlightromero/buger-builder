@@ -42,7 +42,7 @@ class BurgerBuilder extends Component {
 
   render() {
     const { purchasing } = this.state
-    const { error } = this.props
+    const { error, isAuthenticated } = this.props
     const { ingredients, totalPrice, onIngredientAdded, onIngredientRemoved } = this.props
     const disabledInfo = {
       ...ingredients
@@ -63,6 +63,7 @@ class BurgerBuilder extends Component {
             price={totalPrice}
             purchasable={this.updatePurchaseState(ingredients)}
             ordered={this.purchaseHandler}
+            isAuth={isAuthenticated}
             />
         </>
       )
@@ -91,7 +92,8 @@ const mapStateToProps = state => {
   return {
     ingredients: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
-    error: state.burgerBuilder.error
+    error: state.burgerBuilder.error,
+    isAuthenticated: state.auth.token !== null
   }
 }
 
