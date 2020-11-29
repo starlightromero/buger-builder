@@ -7,15 +7,15 @@ import SideDrawer from '../../Components/Navigation/SideDrawer/SideDrawer'
 const Layout = props => {
   const [ showSideDrawer, setShowSideDrawer ] = useState(false)
   
-  sideDrawerClosedHandler = () => {
+  const sideDrawerClosedHandler = () => {
     setShowSideDrawer(false)
   }
 
-  sideDrawerToggleHandler = () => {
+  const sideDrawerToggleHandler = () => {
     setShowSideDrawer(!showSideDrawer)
   }
   
-  const { isAuthenticated } = this.props
+  const { isAuthenticated } = props
   
   return (
     <>
