@@ -14,7 +14,7 @@ const controls = [
   { label: 'Mustard', type: 'mustard' }
 ]
 
-const buildControls = props => (
+const BuildControls = props => (
   <div className={classes.BuildControls}>
     <p>Current Price: <strong>${props.price.toFixed(2)}</strong></p>
     <div>
@@ -37,4 +37,4 @@ const buildControls = props => (
   </div>
 )
 
-export default buildControls
+export default BuildControls
