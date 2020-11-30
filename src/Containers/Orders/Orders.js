@@ -7,9 +7,11 @@ import Loader from '../../Components/UI/Loader/Loader'
 import * as actions from '../../store/actions'
 
 const Orders = props => {
+  const { onFetchOrders } = props
+  
   useEffect(() => {
     props.onFetchOrders(props.token, props.userId)
-  }, [])
+  }, [onFetchOrders])
 
 
   let displayOrders = <Loader />

@@ -26,7 +26,7 @@ export const BurgerBuilder = props => {
 
   useEffect(() => {
     onInitIngredients()
-  }, [])
+  }, [onInitIngredients])
 
   const updatePurchaseState = ingredients => {
     const sum = Object.keys(ingredients).map(key => {
