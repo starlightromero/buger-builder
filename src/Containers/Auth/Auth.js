@@ -42,11 +42,13 @@ const Auth = props => {
     }
   })
 
+  const { buildingBurger, authRedirectPath, onSetAuthRedirectPath } = props
+
   useEffect(() => {
-    if (!props.buildingBurger && props.authRedirectPath !== '/') {
-      props.onSetAuthRedirectPath('/')
+    if (!buildingBurger && authRedirectPath !== '/') {
+      onSetAuthRedirectPath('/')
     }
-  }, [])
+  }, [buildingBurger, authRedirectPath, onSetAuthRedirectPath])
 
   submitHandler = event => {
     event.preventDefault()
