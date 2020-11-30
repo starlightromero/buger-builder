@@ -24,4 +24,4 @@ const Burger = props => {
   )
 }
 
-export default Bsurger
+export default Burger
