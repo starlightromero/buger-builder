@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Burger.module.css'
 import BurgerIngredient from './BurgerIngedient/BurgerIngredient'
 
-const burger = props => {
+const Burger = props => {
   let ingredients = Object.keys(props.ingredients).map(ingredient => {
     return [...Array(props.ingredients[ingredient])].map((_, i) => {
       return <BurgerIngredient key={`${ingredient}${i}`} type={ingredient} />
@@ -24,4 +24,4 @@ const burger = props => {
   )
 }
 
-export default burger
+export default Bsurger

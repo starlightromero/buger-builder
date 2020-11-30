@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './NavigationItems.module.css'
 import NavigationItem from './NavigationItem/NavigationItem'
 
-const navigationItems = props => {
+const NavigationItems = props => {
   let authNavItems = (
     <NavigationItem link='/auth'>Sign In</NavigationItem>
   )
@@ -23,4 +23,4 @@ const navigationItems = props => {
   )
 }
 
-export default navigationItems
+export default NavigationItems
