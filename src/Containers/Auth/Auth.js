@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import classes from './Auth.module.css'
 import Input from '../../Components/UI/Input/Input'
 import Button from '../../Components/UI/Button/Button'
@@ -9,9 +10,9 @@ import * as actions from '../../store/actions'
 import { checkValidity } from '../../shared/validation'
 
 const Auth = props => {
-  const [ formIsValid, setFormIsValid ] = useState(false)
-  const [ isSignUp, setIsSignUp ] = useState(false)
-  const [ authForm, setAuthForm ] = useState({
+  const [formIsValid, setFormIsValid] = useState(false)
+  const [isSignUp, setIsSignUp] = useState(false)
+  const [authForm, setAuthForm] = useState({
     email: {
       elementType: 'input',
       elementConfig: {
@@ -55,7 +56,7 @@ const Auth = props => {
     props.onAuth(
       authForm.email.value,
       authForm.password.value,
-      isSignUp,
+      isSignUp
     )
   }
 
@@ -76,7 +77,7 @@ const Auth = props => {
     updatedAuthForm[inputIdentifier] = updatedFormElement
 
     let formIsValid = true
-    for (let inputIdentifier in updatedAuthForm) {
+    for (const inputIdentifier in updatedAuthForm) {
       formIsValid = updatedAuthForm[inputIdentifier].valid && formIsValid
     }
     setAuthForm(updatedAuthForm)
@@ -84,7 +85,7 @@ const Auth = props => {
   }
 
   const formElementsArray = []
-  for (let key in authForm) {
+  for (const key in authForm) {
     formElementsArray.push({
       id: key,
       config: authForm[key]
@@ -99,7 +100,7 @@ const Auth = props => {
     authButtonText = 'SIGN IN'
   }
 
-  let form = (
+  const form = (
     <form onSubmit={submitHandler}>
       {formElementsArray.map(formElement => (
         <Input
@@ -162,6 +163,17 @@ const mapDispatchToProps = dispatch => {
     onAuth: (email, password, isSignUp) => dispatch(actions.auth(email, password, isSignUp)),
     onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path))
   }
+}
+
+Auth.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  onAuthRedirectPath: PropTypes.func,
+  error: PropTypes.object,
+  onAuth: PropTypes.func.isRequired,
+  buildingBurger: PropTypes.bool.isRequired,
+  authRedirectPath: PropTypes.string.isRequired,
+  onSetAuthRedirectPath: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth)
