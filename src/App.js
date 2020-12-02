@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
 import Layout from './Containers/Layout/Layout'
@@ -12,7 +12,7 @@ import * as actions from './store/actions'
 const App = props => {
   const isAuthenticated = useSelector(state => state.auth.token !== null)
   const dispatch = useDispatch()
-  const onTryAutoSignUp = () => dispatch(actions.authCheckState())
+  const onTryAutoSignUp = useCallback(() => dispatch(actions.authCheckState()), [])
 
   useEffect(() => {
     onTryAutoSignUp()
