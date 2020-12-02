@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classes from './Toolbar.module.css'
 import Logo from '../../Logo/Logo'
 import NavigationItems from '../NavigationItems/NavigationItems'
@@ -15,5 +16,10 @@ const Toolbar = props => (
     </nav>
   </header>
 )
+
+Toolbar.propTypes = {
+  drawerToggleClicked: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool.isRequired
+}
 
 export default Toolbar

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, withRouter, Switch, Redirect } from 'react-router-dom'
+import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import Layout from './Containers/Layout/Layout'
 import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder'
 import Checkout from './Containers/Checkout/Checkout'
@@ -42,6 +43,11 @@ const App = props => {
       {routes}
     </Layout>
   )
+}
+
+App.propTypes = {
+  onTryAutoSignUp: PropTypes.func,
+  isAuthenticated: PropTypes.bool
 }
 
 const mapStateToProps = state => {
