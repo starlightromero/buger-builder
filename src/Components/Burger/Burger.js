@@ -26,7 +26,7 @@ const Burger = props => {
 }
 
 Burger.propTypes = {
-  ingredients: PropTypes.object
+  ingredients: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 }
 
 export default Burger
