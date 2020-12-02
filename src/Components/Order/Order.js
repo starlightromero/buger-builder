@@ -37,7 +37,7 @@ const Order = props => {
 }
 
 Order.propTypes = {
-  ingredients: PropTypes.array.isRequired,
+  ingredients: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   price: PropTypes.number.isRequired
 }
 
