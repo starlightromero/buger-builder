@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from '../../axios-orders'
 import Order from '../../Components/Order/Order.js'
 import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler'
@@ -7,12 +7,17 @@ import Loader from '../../Components/UI/Loader/Loader'
 import * as actions from '../../store/actions'
 
 const Orders = props => {
-  const { onFetchOrders } = props
-  
-  useEffect(() => {
-    props.onFetchOrders(props.token, props.userId)
-  }, [onFetchOrders])
+  const orders = useSelector(state => state.order.orders)
+  const loading = useSelector(state => state.order.loading)
+  const token = useSelector(state => state.auth.token)
+  const userId = useSelector(state => state.auth.userId)
 
+  const dispatch = useDispatch()
+  const onFetchOrders = (token, userId) => dispatch(actions.fetchOrders(token, userId))
+
+  useEffect(() => {
+    onFetchOrders(token, userId)
+  }, [onFetchOrders])
 
   let displayOrders = <Loader />
   if (!loading) {
@@ -35,19 +40,4 @@ const Orders = props => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    orders: state.order.orders,
-    loading: state.order.loading,
-    token: state.auth.token,
-    userId: state.auth.userId
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onFetchOrders: (token, userId) => dispatch(actions.fetchOrders(token, userId))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(Orders, axios))
+export default withErrorHandler(Orders, axios)
