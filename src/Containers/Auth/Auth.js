@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import PropTypes from 'prop-types'
 import classes from './Auth.module.css'
 import Input from '../../Components/UI/Input/Input'
 import Button from '../../Components/UI/Button/Button'
@@ -142,7 +141,7 @@ const Auth = props => {
 
   let authRedirect = null
   if (isAuthenticated) {
-    authRedirect = <Redirect to={() => props.onAuthRedirectPath('/')} />
+    authRedirect = <Redirect to={authRedirectPath} />
   }
 
   return (
@@ -155,10 +154,6 @@ const Auth = props => {
       </Button>
     </div>
   )
-}
-
-Auth.propTypes = {
-  onAuthRedirectPath: PropTypes.func
 }
 
 export default Auth
