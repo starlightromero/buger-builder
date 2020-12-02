@@ -9,18 +9,18 @@ import {
 import { initIngredientsSaga } from './burgerBuilder'
 import { purchaseBurgerSaga, fetchOrdersSaga } from './order'
 
-export function* watchAuth () {
+export function * watchAuth () {
   yield takeEvery(actionTypes.AUTH_INIT_SIGNOUT, signoutSaga)
   yield takeEvery(actionTypes.AUTH_CHECK_TIMEOUT, checkAuthTimeoutSaga)
   yield takeEvery(actionTypes.AUTH_USER, authUserSaga)
   yield takeEvery(actionTypes.AUTH_CHECK_STATE, authCheckStateSaga)
 }
 
-export function* watchBurgerBuilder () {
+export function * watchBurgerBuilder () {
   yield takeEvery(actionTypes.INIT_INGREDIENTS, initIngredientsSaga)
 }
 
-export function* watchOrder () {
+export function * watchOrder () {
   yield takeEvery(actionTypes.PURCHASE_BURGER, purchaseBurgerSaga)
   yield takeEvery(actionTypes.FETCH_ORDERS, fetchOrdersSaga)
 }
