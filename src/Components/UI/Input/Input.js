@@ -72,15 +72,15 @@ const Input = props => {
 }
 
 Input.propTypes = {
-  invalid: PropTypes.bool,
-  shouldValidate: PropTypes.func,
-  touched: PropTypes.bool,
+  invalid: PropTypes.bool.isRequired,
+  shouldValidate: PropTypes.object.isRequired,
+  touched: PropTypes.bool.isRequired,
   label: PropTypes.string,
-  changed: PropTypes.func,
+  changed: PropTypes.func.isRequired,
   valueType: PropTypes.string,
-  value: PropTypes.string,
-  elementConfig: PropTypes.object,
-  elementType: PropTypes.string
+  value: PropTypes.string.isRequired,
+  elementConfig: PropTypes.object.isRequired,
+  elementType: PropTypes.string.isRequired
 }
 
 export default Input
