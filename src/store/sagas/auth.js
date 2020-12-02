@@ -1,21 +1,20 @@
 import axios from 'axios'
-import { delay } from 'redux-saga/effects'
-import { put } from 'redux-saga/effects'
+import { delay, put } from 'redux-saga/effects'
 import * as actions from '../actions'
 
-export function* signoutSaga (action) {
+export function * signoutSaga (action) {
   yield localStorage.removeItem('token')
   yield localStorage.removeItem('expirationTime')
   yield localStorage.removeItem('userId')
   yield put(actions.signoutSuccess())
 }
 
-export function* checkAuthTimeoutSaga (action) {
+export function * checkAuthTimeoutSaga (action) {
   yield delay(action.expirationTime * 1000)
   yield put(actions.signout())
 }
 
-export function* authUserSaga (action) {
+export function * authUserSaga (action) {
   yield put(actions.authStart())
   const authData = {
     email: action.email,
@@ -39,7 +38,7 @@ export function* authUserSaga (action) {
   }
 }
 
-export function* authCheckStateSaga (action) {
+export function * authCheckStateSaga (action) {
   const token = yield localStorage.getItem('token')
   if (!token) {
     yield put(actions.signout())
