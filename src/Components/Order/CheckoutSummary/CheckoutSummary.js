@@ -7,7 +7,7 @@ import Button from '../../UI/Button/Button'
 const CheckoutSummary = props => {
   return (
     <div className={classes.CheckoutSummary}>
-      <h1>We hope it tastes well!</h1>
+      <h1>We hope it tastes great!</h1>
       <div style={{ width: '100%', margin: 'auto' }}>
         <Burger ingredients={props.ingredients} />
       </div>
@@ -18,7 +18,7 @@ const CheckoutSummary = props => {
 }
 
 CheckoutSummary.propTypes = {
-  ingredients: PropTypes.array.isRequired,
+  ingredients: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   checkoutCanceled: PropTypes.func.isRequired,
   checkoutContinued: PropTypes.func.isRequired
 }
