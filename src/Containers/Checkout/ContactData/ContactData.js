@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from '../../../axios-orders'
+import PropTypes from 'prop-types'
 import classes from './ContactData.module.css'
 import Loader from '../../../Components/UI/Loader/Loader'
 import Button from '../../../Components/UI/Button/Button'
@@ -10,8 +11,8 @@ import * as actions from '../../../store/actions'
 import { checkValidity } from '../../../shared/validation'
 
 const ContactData = props => {
-  const [ formIsValid, setFormIsValid ] = useState(false)
-  const [ orderForm, setOrderForm ] = useState({
+  const [formIsValid, setFormIsValid] = useState(false)
+  const [orderForm, setOrderForm] = useState({
     orderForm: {
       name: {
         elementType: 'input',
@@ -86,8 +87,8 @@ const ContactData = props => {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'fastest', displayValue: 'Fastest'},
-            {value: 'cheapest', displayValue: 'Cheapest'}
+            { value: 'fastest', displayValue: 'Fastest' },
+            { value: 'cheapest', displayValue: 'Cheapest' }
           ]
         },
         value: 'fastest',
@@ -100,7 +101,7 @@ const ContactData = props => {
   const orderHandler = event => {
     event.preventDefault()
     const orderData = {}
-    for (let formElementIdentifier in orderForm) {
+    for (const formElementIdentifier in orderForm) {
       orderData[formElementIdentifier] = orderForm[formElementIdentifier].value
     }
     const { ingredients, price, onOrderBurger, token, userId } = props
@@ -126,7 +127,7 @@ const ContactData = props => {
     updatedOrderForm[inputIdentifier] = updatedFormElement
 
     let formIsValid = true
-    for (let inputIdentifier in updatedOrderForm) {
+    for (const inputIdentifier in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid
     }
     setOrderForm(updatedOrderForm)
@@ -135,7 +136,7 @@ const ContactData = props => {
 
   const formElementsArray = []
 
-  for (let key in orderForm) {
+  for (const key in orderForm) {
     formElementsArray.push({
       id: key,
       config: orderForm[key]
@@ -153,7 +154,7 @@ const ContactData = props => {
           invalid={!formElement.config.valid}
           shouldValidate={formElement.config.validation}
           touched={formElement.config.touched}
-          changed={event => this.inputChangedHandler(event, formElement.id)} />
+          changed={event => inputChangedHandler(event, formElement.id)} />
       ))}
       <Button btnType='Success' disabled={!formIsValid}>ORDER</Button>
     </form>
@@ -184,6 +185,15 @@ const mapDispatchToProps = dispatch => {
   return {
     onOrderBurger: (orderData, token) => dispatch(actions.purchaseBurger(orderData, token))
   }
+}
+
+ContactData.propTypes = {
+  ingredients: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  price: PropTypes.number.isRequired,
+  userId: PropTypes.string,
+  token: PropTypes.string,
+  onOrderBurger: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios))
