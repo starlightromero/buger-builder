@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import axios from '../../../axios-orders'
-import PropTypes from 'prop-types'
 import classes from './ContactData.module.css'
 import Loader from '../../../Components/UI/Loader/Loader'
 import Button from '../../../Components/UI/Button/Button'
 import Input from '../../../Components/UI/Input/Input'
 import withErrorHandler from '../../../HOC/withErrorHandler/withErrorHandler'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../../store/actions'
 import { checkValidity } from '../../../shared/validation'
 
@@ -98,13 +97,23 @@ const ContactData = props => {
     }
   })
 
+  const ingredients = useSelector(state => state.burgerBuilder.ingredients)
+  const price = useSelector(state => state.burgerBuilder.totalPrice)
+  const loading = useSelector(state => state.order.loading)
+  const token = useSelector(state => state.auth.token)
+  const userId = useSelector(state => state.auth.userI)
+
+  const dispatch = useDispatch()
+
+  const onOrderBurger = (orderData, token) => dispatch(actions.purchaseBurger(orderData, token))
+
   const orderHandler = event => {
     event.preventDefault()
     const orderData = {}
     for (const formElementIdentifier in orderForm) {
       orderData[formElementIdentifier] = orderForm[formElementIdentifier].value
     }
-    const { ingredients, price, onOrderBurger, token, userId } = props
+
     const order = {
       ingredients,
       price,
@@ -159,7 +168,7 @@ const ContactData = props => {
       <Button btnType='Success' disabled={!formIsValid}>ORDER</Button>
     </form>
   )
-  if (props.loading === true) {
+  if (loading === true) {
     form = <Loader />
   }
 
@@ -171,29 +180,4 @@ const ContactData = props => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    ingredients: state.burgerBuilder.ingredients,
-    price: state.burgerBuilder.totalPrice,
-    loading: state.order.loading,
-    token: state.auth.token,
-    userId: state.auth.userId
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onOrderBurger: (orderData, token) => dispatch(actions.purchaseBurger(orderData, token))
-  }
-}
-
-ContactData.propTypes = {
-  ingredients: PropTypes.array,
-  loading: PropTypes.bool.isRequired,
-  price: PropTypes.number.isRequired,
-  userId: PropTypes.string,
-  token: PropTypes.string,
-  onOrderBurger: PropTypes.func.isRequired
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios))
+export default withErrorHandler(ContactData, axios)
