@@ -3,8 +3,9 @@ import useHttpErrorHandler from '../../hooks/http-error-handler'
 import Modal from '../../Components/UI/Modal/Modal'
 
 const withErrorHandler = (WrappedComponent, axios) => {
+  // eslint-disable-next-line react/display-name
   return props => {
-    const [ error, clearError ] = useHttpErrorHandler(axios)
+    const [error, clearError] = useHttpErrorHandler(axios)
 
     return (
       <>
