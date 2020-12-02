@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls'
 import Modal from '../../Components/UI/Modal/Modal'
@@ -10,7 +11,7 @@ import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler'
 import * as actions from '../../store/actions/index'
 
 export const BurgerBuilder = props => {
-  const [ purchasing, setPurchasing ] = useState(false)
+  const [purchasing, setPurchasing] = useState(false)
 
   const ingredients = useSelector(state => state.burgerBuilder.ingredients)
   const totalPrice = useSelector(state => state.burgerBuilder.totalPrice)
@@ -60,12 +61,12 @@ export const BurgerBuilder = props => {
     ...ingredients
   }
 
-  for (let key in disabledInfo) {
+  for (const key in disabledInfo) {
     disabledInfo[key] = disabledInfo[key] <= 0
   }
 
   let orderSummary = null
-  let burger = error ? <p>Ingredients can't be loaded!</p> : <Loader />
+  let burger = error ? <p>Ingredients can&#39t be loaded!</p> : <Loader />
 
   if (ingredients) {
     burger = (
@@ -100,6 +101,10 @@ export const BurgerBuilder = props => {
       {burger}
     </>
   )
+}
+
+BurgerBuilder.propTypes = {
+  history: PropTypes.object.isRequired
 }
 
 export default withErrorHandler(BurgerBuilder, axios)
