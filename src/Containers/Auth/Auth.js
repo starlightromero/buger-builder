@@ -50,7 +50,7 @@ const Auth = props => {
     }
   }, [buildingBurger, authRedirectPath, onSetAuthRedirectPath])
 
-  submitHandler = event => {
+  const submitHandler = event => {
     event.preventDefault()
     props.onAuth(
       authForm.email.value,
