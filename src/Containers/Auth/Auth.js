@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -52,7 +52,7 @@ const Auth = props => {
   const dispatch = useDispatch()
 
   const onAuth = (email, password, isSignUp) => dispatch(actions.auth(email, password, isSignUp))
-  const onSetAuthRedirectPath = path => dispatch(actions.setAuthRedirectPath(path))
+  const onSetAuthRedirectPath = useCallback(path => dispatch(actions.setAuthRedirectPath(path)), [])
 
   useEffect(() => {
     if (!buildingBurger && authRedirectPath !== '/') {
