@@ -12,10 +12,10 @@ import * as actions from '../../store/actions/index'
 export const BurgerBuilder = props => {
   const [ purchasing, setPurchasing ] = useState(false)
 
-  ingredients = useSelector(state => state.burgerBuilder.ingredients)
-  totalPrice = useSelector(state => state.burgerBuilder.totalPrice)
-  error = useSelector(state => state.burgerBuilder.error)
-  isAuthenticated = useSelector(state => state.auth.token !== null)
+  const ingredients = useSelector(state => state.burgerBuilder.ingredients)
+  const totalPrice = useSelector(state => state.burgerBuilder.totalPrice)
+  const error = useSelector(state => state.burgerBuilder.error)
+  const isAuthenticated = useSelector(state => state.auth.token !== null)
 
   const dispatch = useDispatch()
 
