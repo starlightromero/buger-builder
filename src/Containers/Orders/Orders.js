@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from '../../axios-orders'
 import Order from '../../Components/Order/Order.js'
@@ -13,7 +13,9 @@ const Orders = props => {
   const userId = useSelector(state => state.auth.userId)
 
   const dispatch = useDispatch()
-  const onFetchOrders = (token, userId) => dispatch(actions.fetchOrders(token, userId))
+  const onFetchOrders = useCallback(
+    (token, userId) => dispatch(actions.fetchOrders(token, userId)), []
+  )
 
   useEffect(() => {
     onFetchOrders(token, userId)
