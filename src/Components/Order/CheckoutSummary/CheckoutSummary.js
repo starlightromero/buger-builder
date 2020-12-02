@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classes from './CheckoutSummary.module.css'
 import Burger from '../../Burger/Burger'
 import Button from '../../UI/Button/Button'
@@ -14,6 +15,12 @@ const CheckoutSummary = props => {
       <Button btnType='Success' clicked={props.checkoutContinued}>CONTINUE</Button>
     </div>
   )
+}
+
+CheckoutSummary.propTypes = {
+  ingredients: PropTypes.array.isRequired,
+  checkoutCanceled: PropTypes.func.isRequired,
+  checkoutContinued: PropTypes.func.isRequired
 }
 
 export default CheckoutSummary
