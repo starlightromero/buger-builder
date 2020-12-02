@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import classes from './Auth.module.css'
 import Input from '../../Components/UI/Input/Input'
@@ -43,7 +43,16 @@ const Auth = props => {
     }
   })
 
-  const { buildingBurger, authRedirectPath, onSetAuthRedirectPath } = props
+  const loading = useSelector(state => state.auth.loading)
+  const error = useSelector(state => state.auth.error)
+  const isAuthenticated = useSelector(state => state.auth.token !== null)
+  const buildingBurger = useSelector(state => state.burgerBuilder.building)
+  const authRedirectPath = useSelector(state => state.auth.authRedirectPath)
+
+  const dispatch = useDispatch()
+
+  const onAuth = (email, password, isSignUp) => dispatch(actions.auth(email, password, isSignUp))
+  const onSetAuthRedirectPath = path => dispatch(actions.setAuthRedirectPath(path))
 
   useEffect(() => {
     if (!buildingBurger && authRedirectPath !== '/') {
@@ -53,7 +62,7 @@ const Auth = props => {
 
   const submitHandler = event => {
     event.preventDefault()
-    props.onAuth(
+    onAuth(
       authForm.email.value,
       authForm.password.value,
       isSignUp
@@ -119,20 +128,20 @@ const Auth = props => {
     </form>
   )
 
-  if (props.loading) {
+  if (loading) {
     <Loader />
   }
 
   let errorMessage = null
 
-  if (props.error) {
+  if (error) {
     errorMessage = (
-      <p>{props.error.message}</p>
+      <p>{error.message}</p>
     )
   }
 
   let authRedirect = null
-  if (props.isAuthenticated) {
+  if (isAuthenticated) {
     authRedirect = <Redirect to={() => props.onAuthRedirectPath('/')} />
   }
 
@@ -148,32 +157,8 @@ const Auth = props => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    loading: state.auth.loading,
-    error: state.auth.error,
-    isAuthenticated: state.auth.token !== null,
-    buildingBurger: state.burgerBuilder.building,
-    authRedirectPath: state.auth.authRedirectPath
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onAuth: (email, password, isSignUp) => dispatch(actions.auth(email, password, isSignUp)),
-    onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path))
-  }
-}
-
 Auth.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  onAuthRedirectPath: PropTypes.func,
-  error: PropTypes.object,
-  onAuth: PropTypes.func.isRequired,
-  buildingBurger: PropTypes.bool.isRequired,
-  authRedirectPath: PropTypes.string.isRequired,
-  onSetAuthRedirectPath: PropTypes.func.isRequired
+  onAuthRedirectPath: PropTypes.func
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth)
+export default Auth
