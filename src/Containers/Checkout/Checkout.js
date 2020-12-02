@@ -14,15 +14,15 @@ const Checkout = props => {
   }
 
   let summary = <Redirect to='/' />
-  if (ingredients) {
-    const purchaseRedirect = purchased ? <Redirect to='/' /> : null
+  if (props.ingredients) {
+    const purchaseRedirect = props.purchased ? <Redirect to='/' /> : null
     summary = (
       <div>
         {purchaseRedirect}
         <CheckoutSummary
           checkoutCanceled={checkoutCanceledHandler}
           checkoutContinued={checkoutContinuedHandler}
-          ingredients={ingredients} />
+          ingredients={props.ingredients} />
         <Route
           path={props.match.path + '/contact-data'}
           component={ContactData} />
