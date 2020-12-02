@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import Layout from './Containers/Layout/Layout'
 import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder'
 import Checkout from './Containers/Checkout/Checkout'
@@ -11,7 +10,9 @@ import Signout from './Containers/Auth/Signout/Signout'
 import * as actions from './store/actions'
 
 const App = props => {
-  const { onTryAutoSignUp } = props
+  const isAuthenticated = useSelector(state => state.auth.token !== null)
+  const dispatch = useDispatch()
+  const onTryAutoSignUp = () => dispatch(actions.authCheckState())
 
   useEffect(() => {
     onTryAutoSignUp()
@@ -25,7 +26,7 @@ const App = props => {
     </Switch>
   )
 
-  if (props.isAuthenticated) {
+  if (isAuthenticated) {
     routes = (
       <Switch>
         <Route path='/checkout' component={Checkout} />
@@ -45,21 +46,4 @@ const App = props => {
   )
 }
 
-App.propTypes = {
-  onTryAutoSignUp: PropTypes.func,
-  isAuthenticated: PropTypes.bool
-}
-
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.auth.token !== null
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignUp: () => dispatch(actions.authCheckState())
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(App)
