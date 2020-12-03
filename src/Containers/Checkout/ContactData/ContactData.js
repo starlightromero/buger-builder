@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import axios from '../../../axios-orders'
+import api from '../../../api'
 import classes from './ContactData.module.css'
 import Loader from '../../../Components/UI/Loader/Loader'
 import Button from '../../../Components/UI/Button/Button'
@@ -139,4 +139,4 @@ const ContactData = props => {
   )
 }
 
-export default withErrorHandler(ContactData, axios)
+export default withErrorHandler(ContactData, api)
