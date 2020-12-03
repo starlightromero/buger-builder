@@ -48,50 +48,11 @@ const ContactData = props => {
       validation: {
         required: true,
         minLength: 5,
-        maxlength: 5,
+        maxLength: 5,
         isNumeric: true
       },
       valid: false,
       touched: false
-    },
-    country: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Country'
-      },
-      value: '',
-      validation: {
-        required: true
-      },
-      valid: false,
-      touched: false
-    },
-    email: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'email',
-        placeholder: 'Your Email'
-      },
-      value: '',
-      validation: {
-        required: true,
-        isEmail: true
-      },
-      valid: false,
-      touched: false
-    },
-    deliveryMethod: {
-      elementType: 'select',
-      elementConfig: {
-        options: [
-          { value: 'fastest', displayValue: 'Fastest' },
-          { value: 'cheapest', displayValue: 'Cheapest' }
-        ]
-      },
-      value: 'fastest',
-      validation: {},
-      valid: true
     }
   })
 
