@@ -28,3 +28,8 @@ code {
   --green: #47B612;
   --light-green: #53D514;
 }
+
+@font-face {
+  font-family: crafting;
+  src: url('./assets/fonts/crafting.otf');
+}
