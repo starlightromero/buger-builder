@@ -101,7 +101,7 @@ const Auth = props => {
   }
 
   let authButtonText = 'SIGN UP'
-  let changeAuthButtonText = 'Already have an account? SIGN IN'
+  let changeAuthButtonText = 'Have an account? SIGN IN'
 
   if (!isSignUp) {
     changeAuthButtonText = 'Need an account? SIGN UP'
