@@ -15,11 +15,12 @@
 }
 
 .BuildControl .Button {
-  cursor: pointer;
+  background-color: var(--white);
   border: none;
-  outline: none;
+  cursor: pointer;
   font-size: 2em;
   height: 100%;
+  outline: none;
   width: 60px;
 }
 
