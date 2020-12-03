@@ -7,7 +7,7 @@ import BuildControls from '../../Components/Burger/BuildControls/BuildControls'
 import Modal from '../../Components/UI/Modal/Modal'
 import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary'
 import Loader from '../../Components/UI/Loader/Loader'
-import axios from '../../axios-orders'
+import api from '../../api'
 import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler'
 import * as actions from '../../store/actions/index'
 
@@ -108,4 +108,4 @@ BurgerBuilder.propTypes = {
   history: PropTypes.object.isRequired
 }
 
-export default withErrorHandler(BurgerBuilder, axios)
+export default withErrorHandler(BurgerBuilder, api)
