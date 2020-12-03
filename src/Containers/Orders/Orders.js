@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import axios from '../../axios-orders'
+import api from '../../api'
 import Order from '../../Components/Order/Order.js'
 import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler'
 import Loader from '../../Components/UI/Loader/Loader'
@@ -42,4 +42,4 @@ const Orders = props => {
   )
 }
 
-export default withErrorHandler(Orders, axios)
+export default withErrorHandler(Orders, api)
