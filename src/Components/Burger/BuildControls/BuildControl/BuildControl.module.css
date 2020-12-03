@@ -1,21 +1,32 @@
 .BuildControl {
-  align-items: flex-end;
+  align-items: center;
+  background-color: var(--red);
+  border: 1px solid var(--white);
+  border-radius: 200px;
+  box-shadow: 2px 2px 10px var(--black);
+  color: var(--white);
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  margin: 5px 0;
+  height: 50px;
+  padding: 0;
+  margin: 10px 0;
+  width: 230px;
 }
 
-.BuildControl .Buttons {
-  display: flex;
-}
-
-.BuildControl .Buttons button {
-  border: 1px solid #AA6871;
+.BuildControl .Button {
   cursor: pointer;
-  display: block;
-  font: inherit;
-  margin: 0 5px;
+  border: none;
   outline: none;
-  padding: 5px;
-  width: 80px;
+  font-size: 2em;
+  height: 100%;
+  width: 60px;
+}
+
+.BuildControl .Less {
+  border-radius: 100px 0 0 100px;
+}
+
+.BuildControl .More {
+  border-radius: 0 100px 100px 0;
 }
