@@ -1,20 +1,6 @@
 .ContactData {
-  background-color: var(--white);
-  border-radius: 20px;
-  box-shadow: 0 0 20px -10px var(--black);
-  box-sizing: border-box;
-  margin: 120px auto;
-  padding: 10px;
+  margin: auto;
+  padding-top: 20px;
   text-align: center;
   width: 80%;
-}
-
-.ContactData button  {
-  width: 300px;
-}
-
-@media (min-width: 600px) {
-  .ContactData {
-    width: 500px;
-  }
 }
