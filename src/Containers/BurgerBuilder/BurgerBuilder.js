@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+import classes from './BurgerBuilder.module.css'
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/Burger/BuildControls/BuildControls'
 import Modal from '../../Components/UI/Modal/Modal'
@@ -70,7 +71,7 @@ export const BurgerBuilder = props => {
 
   if (ingredients) {
     burger = (
-      <>
+      <div className={classes.BurgerBuilder}>
         <Burger ingredients={ingredients} />
         <BuildControls
           ingredientAdded={onIngredientAdded}
@@ -81,7 +82,7 @@ export const BurgerBuilder = props => {
           ordered={purchaseHandler}
           isAuth={isAuthenticated}
           />
-      </>
+      </div>
     )
     orderSummary = (
       <OrderSummary
