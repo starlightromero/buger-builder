@@ -1,19 +1,25 @@
-import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import CheckoutSummary from '../../Components/Order/CheckoutSummary/CheckoutSummary'
 import ContactData from './ContactData/ContactData'
-import { useSelector } from 'react-redux'
+import Modal from '../../Components/UI/Modal/Modal'
 
 const Checkout = props => {
+  const [showModal, setShowModal] = useState(false)
   const ingredients = useSelector(state => state.burgerBuilder.ingredients)
   const purchased = useSelector(state => state.order.purchased)
+
+  const closeModalHandler = () => {
+    setShowModal(false)
+  }
 
   const checkoutCanceledHandler = () => {
     props.history.goBack()
   }
 
   const checkoutContinuedHandler = event => {
-    props.history.replace('/checkout/contact-data')
+    setShowModal(true)
   }
 
   let summary = <Redirect to='/' />
@@ -22,13 +28,13 @@ const Checkout = props => {
     summary = (
       <div>
         {purchaseRedirect}
+        <Modal show={showModal} modalClosed={closeModalHandler}>
+          <ContactData />
+        </Modal>
         <CheckoutSummary
           checkoutCanceled={checkoutCanceledHandler}
           checkoutContinued={checkoutContinuedHandler}
           ingredients={ingredients} />
-        <Route
-          path={props.match.path + '/contact-data'}
-          component={ContactData} />
       </div>
     )
   }
