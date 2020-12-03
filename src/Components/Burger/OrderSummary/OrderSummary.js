@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classes from './OrderSummary.module.css'
 import Button from '../../UI/Button/Button'
 
 const OrderSummary = props => {
@@ -14,7 +15,7 @@ const OrderSummary = props => {
   })
 
   return (
-    <>
+    <div className={classes.OrderSummary}>
       <h3>Your Order</h3>
       <p>A delicious burger with the following ingredients:</p>
       <ul>
@@ -28,7 +29,7 @@ const OrderSummary = props => {
       <Button btnType='Success' clicked={props.purchasedContinued}>
         CONTINUE
       </Button>
-    </>
+    </div>
   )
 }
 
