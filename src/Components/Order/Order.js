@@ -15,14 +15,7 @@ const Order = props => {
   const ingredientOutput = ingredients.map(ingredient => {
     return (
       <span
-        key={ingredient.name}
-        style={{
-          textTransform: 'capitalize',
-          display: 'inline-block',
-          margin: '0 8px',
-          border: '1px solid #ccc',
-          padding: '5px'
-        }}>
+        key={ingredient.name}>
         {ingredient.name} ({ingredient.amount})
       </span>
     )
@@ -30,7 +23,8 @@ const Order = props => {
 
   return (
     <div className={classes.Order}>
-      <p>Ingredients: {ingredientOutput}</p>
+      <h3>Ingredients:</h3>
+      <p>{ingredientOutput}</p>
       <p>Price: <strong>USD {props.price.toFixed(2)}</strong></p>
     </div>
   )
