@@ -5,7 +5,7 @@
 }
 
 .Loader {
-  color: #521751;
+  color: var(--red);
   font-size: 11px;
   text-indent: -99999em;
   margin: 55px auto;
