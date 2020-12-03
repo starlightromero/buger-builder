@@ -60,7 +60,7 @@ const ContactData = props => {
   const price = useSelector(state => state.burgerBuilder.totalPrice)
   const loading = useSelector(state => state.order.loading)
   const token = useSelector(state => state.auth.token)
-  const userId = useSelector(state => state.auth.userI)
+  const userId = useSelector(state => state.auth.userId)
 
   const dispatch = useDispatch()
 
