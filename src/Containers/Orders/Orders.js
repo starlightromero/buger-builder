@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import api from '../../api'
+import classes from './Orders.module.css'
 import Order from '../../Components/Order/Order.js'
 import withErrorHandler from '../../HOC/withErrorHandler/withErrorHandler'
 import Loader from '../../Components/UI/Loader/Loader'
@@ -35,8 +36,7 @@ const Orders = props => {
     )
   }
   return (
-    <div>
-      <h1>Orders</h1>
+    <div className={classes.Orders}>
       {displayOrders}
     </div>
   )
